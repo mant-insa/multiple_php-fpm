@@ -1,0 +1,11 @@
+#Ignoring all log files
+*.txt 
+# project files
+.idea
+
+**/.DS_Store
+
+**/.idea
+nginx/ssl/*
+nginx/ssl/**/*
+!nginx/ssl/.gitkeep

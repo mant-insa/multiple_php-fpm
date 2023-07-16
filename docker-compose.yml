@@ -1,0 +1,29 @@
+services:
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./scripts/:/var/www/scripts/
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx/ssl/:/etc/nginx/ssl
+    ports:
+      - "1024-1124:1024-1124"
+      - "2024-2124:2024-2124"
+    depends_on:
+      - project_1
+      - project_2
+    container_name: project_nginx
+  project_1:
+    build:
+      context: .
+      dockerfile: _docker/app/Dockerfile
+    volumes:
+      - ./scripts/project_1/:/var/www/scripts/project_1/
+    container_name: project_1
+  project_2:
+    build:
+      context: .
+      dockerfile: _docker/app/Dockerfile
+    volumes:
+      - ./scripts/project_2/:/var/www/scripts/project_2/
+    container_name: project_2
